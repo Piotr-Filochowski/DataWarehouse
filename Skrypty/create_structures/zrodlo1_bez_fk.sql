@@ -3,6 +3,7 @@
 /* Created on:     12.09.2019 08:36:33                          */
 /*==============================================================*/
 
+USE Zrodlo1;
 
 if exists (select 1
             from  sysobjects
@@ -44,9 +45,9 @@ go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('PO¯YCZKA')
+           where  id = object_id('POZYCZKA')
             and   type = 'U')
-   drop table PO¯YCZKA
+   drop table POZYCZKA
 go
 
 if exists (select 1
@@ -125,14 +126,14 @@ create table PLATNOSC_KARTA (
 go
 
 /*==============================================================*/
-/* Table: PO¯YCZKA                                              */
+/* Table: POZYCZKA                                              */
 /*==============================================================*/
-create table PO¯YCZKA (
+create table POZYCZKA (
    ID_POZYCZKA          numeric              not null,
    SUMA                 numeric              not null,
    OPROCENTOWANIE       float(4)             not null,
    DATA_POZYCZKI        datetime             not null,
-   constraint PK_PO¯YCZKA primary key (ID_POZYCZKA)
+   constraint PK_POZYCZKA primary key (ID_POZYCZKA)
 )
 go
 
