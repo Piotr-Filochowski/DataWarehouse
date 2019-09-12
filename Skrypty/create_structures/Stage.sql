@@ -2,6 +2,7 @@
 /* DBMS name:      Microsoft SQL Server 2014                    */
 /* Created on:     12.09.2019 08:36:33                          */
 /*==============================================================*/
+
 USE Stage;
 
 if exists (select 1
@@ -42,9 +43,9 @@ go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('Z1_PO¯YCZKA')
+           where  id = object_id('Z1_POZYCZKA')
             and   type = 'U')
-   drop table Z1_PO¯YCZKA
+   drop table Z1_POZYCZKA
 go
 
 if exists (select 1
@@ -70,7 +71,7 @@ create table Z1_DOLADOWANIE_TELEFONU (
    ID_OPERATOR          numeric              null,
    NUMER_TELEFONU       varchar(11)          not null,
    KWOTA_DOLADOWANIA    money                not null,
-   constraint PK_DOLADOWANIE_TELEFONU primary key (ID_DOLADOWANIA)
+   constraint PK_Z1_DOLADOWANIE_TELEFONU primary key (ID_DOLADOWANIA)
 )
 go
 
@@ -84,7 +85,7 @@ create table Z1_KARTA (
    NUMER_KARTY          numeric              not null,
    CVC                  numeric              not null,
    DATA_WAZNOSCI_KARTY  datetime             not null,
-   constraint PK_KARTA primary key (ID_KARTY)
+   constraint PK_Z1_KARTA primary key (ID_KARTY)
 )
 go
 
@@ -95,7 +96,7 @@ create table Z1_KONTO (
    ID_KONTA             numeric              not null,
    NUMER_KONTA          numeric              not null,
    OPROCENTOWANIE_KONTA float                not null,
-   constraint PK_KONTO primary key (ID_KONTA)
+   constraint PK_Z1_KONTO primary key (ID_KONTA)
 )
 go
 
@@ -106,7 +107,7 @@ create table Z1_OPERATOR (
    ID_OPERATOR          numeric              not null,
    NAZWA_OPERATORA      varchar(50)          null,
    OPROCENTOWANIE_OPERATORA float                null,
-   constraint PK_OPERATOR primary key (ID_OPERATOR)
+   constraint PK_Z1_OPERATOR primary key (ID_OPERATOR)
 )
 go
 
@@ -119,19 +120,19 @@ create table Z1_PLATNOSC_KARTA (
    ID_TERMINALU         numeric              null,
    WARTOSC              float                not null,
    DATA_PLATNOSCI       datetime             not null,
-   constraint PK_PLATNOSC_KARTA primary key (ID_PLATNOSCI)
+   constraint PK_Z1_PLATNOSC_KARTA primary key (ID_PLATNOSCI)
 )
 go
 
 /*==============================================================*/
-/* Table: PO¯YCZKA                                              */
+/* Table: POZYCZKA                                              */
 /*==============================================================*/
-create table Z1_PO¯YCZKA (
+create table Z1_POZYCZKA (
    ID_POZYCZKA          numeric              not null,
    SUMA                 numeric              not null,
    OPROCENTOWANIE       float(4)             not null,
    DATA_POZYCZKI        datetime             not null,
-   constraint PK_PO¯YCZKA primary key (ID_POZYCZKA)
+   constraint PK_Z1_POZYCZKA primary key (ID_POZYCZKA)
 )
 go
 
@@ -142,7 +143,7 @@ create table Z1_TERMINAL (
    ID_TERMINALU         numeric              not null,
    WLASCICIEL           varchar(150)         not null,
    DATA_WAZNOSCI        datetime             not null,
-   constraint PK_TERMINAL primary key (ID_TERMINALU)
+   constraint PK_Z1_TERMINAL primary key (ID_TERMINALU)
 )
 go
 
@@ -155,7 +156,7 @@ create table Z1_WPLATA_RATY_POZYCZKI (
    ID_KONTA             numeric              not null,
    KWOATA               money                not null,
    DATA_WPLATY_RATY     datetime             not null,
-   constraint PK_WPLATA_RATY_POZYCZKI primary key (ID_RATY)
+   constraint PK_Z1_WPLATA_RATY_POZYCZKI primary key (ID_RATY)
 )
 go
 
@@ -238,7 +239,7 @@ create table Z2_ADRES (
    MIASTO               varchar(50)          null,
    KOD_POCZTOWY         varchar(50)          null,
    MIESZKANIE           varchar(50)          null,
-   constraint PK_ADRES primary key (ID_ADRES)
+   constraint PK_Z2_ADRES primary key (ID_ADRES)
 )
 go
 
@@ -248,7 +249,7 @@ go
 create table Z2_BANK (
    ID_BANK              numeric              not null,
    NAZWA_BANKU          varchar(50)          null,
-   constraint PK_BANK primary key (ID_BANK)
+   constraint PK_Z2_BANK primary key (ID_BANK)
 )
 go
 
@@ -260,7 +261,7 @@ create table Z2_BANKOMAT (
    ID_BANK              numeric              not null,
    ID_ADRES             numeric              not null,
    NAZWA_BANKOMATU      varchar(50)          null,
-   constraint PK_BANKOMAT primary key (ID_BANKOMAT)
+   constraint PK_Z2_BANKOMAT primary key (ID_BANKOMAT)
 )
 go
 
@@ -273,7 +274,7 @@ create table Z2_KARTA (
    NUMER_KARTY          numeric              not null,
    CVC                  numeric              not null,
    DATA_WAZNOSCI_KARTY  datetime             not null,
-   constraint PK_KARTA primary key (ID_KARTY)
+   constraint PK_Z2_KARTA primary key (ID_KARTY)
 )
 go
 
@@ -284,7 +285,7 @@ create table Z2_KONTO (
    ID_KONTA             numeric              not null,
    NUMER_KONTA          numeric              not null,
    OPROCENTOWANIE_KONTA float                not null,
-   constraint PK_KONTO primary key (ID_KONTA)
+   constraint PK_Z2_KONTO primary key (ID_KONTA)
 )
 go
 
@@ -297,7 +298,7 @@ create table Z2_TRANSAKCJA (
    KON_ID_KONTA         numeric              null,
    ID_TYPU              numeric              null,
    KWOTA                float                not null,
-   constraint PK_TRANSAKCJA primary key (ID_TRANSAKCJI)
+   constraint PK_Z2_TRANSAKCJA primary key (ID_TRANSAKCJI)
 )
 go
 
@@ -309,7 +310,7 @@ go
 create table Z2_TYP_TRANSAKCJI (
    ID_TYPU              numeric              not null,
    OPIS                 varchar(100)         null,
-   constraint PK_TYP_TRANSAKCJI primary key (ID_TYPU)
+   constraint PK_Z2_TYP_TRANSAKCJI primary key (ID_TYPU)
 )
 go
 
@@ -321,6 +322,6 @@ create table Z2_WYPLATA_Z_BANKOMATU (
    ID_BANKOMAT          numeric              null,
    ID_KARTY             numeric              null,
    DATA_WYPLATY         datetime             null,
-   constraint PK_WYPLATA_Z_BANKOMATU primary key (ID_WYPLATY)
+   constraint PK_Z2_WYPLATA_Z_BANKOMATU primary key (ID_WYPLATY)
 )
 go
