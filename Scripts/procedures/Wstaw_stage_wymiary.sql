@@ -1,12 +1,13 @@
 USE [Temp]
 GO
 
-/****** Object:  StoredProcedure [dbo].[Wstaw_stage_wymiary]    Script Date: 13.09.2019 16:34:32 ******/
+/****** Object:  StoredProcedure [dbo].[Wstaw_stage_wymiary]    Script Date: 13.09.2019 20:58:47 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
 
 ALTER procedure [dbo].[Wstaw_stage_wymiary] as
 
@@ -124,6 +125,7 @@ insert into Temp.dbo.STG_BANK
 select ta.ID_BANK, ta.NAZWA_BANKU, ta.TIMESTAMP, ta.SOURCE
 from Temp.dbo.TEMP_BANK ta
 join Target.dbo.T_KEY_BANK t on (t.T_ID = ta.ID_BANK)
+except
 select ta.ID_BANK, ta.NAZWA_BANKU, ta.TIMESTAMP, ta.SOURCE
 from Target.dbo.BANK ta
 

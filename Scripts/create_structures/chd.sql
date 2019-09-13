@@ -1,106 +1,8 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2014                    */
-/* Created on:     10.09.2019 08:15:13                          */
+/* Created on:     13.09.2019 20:57:01                          */
 /*==============================================================*/
 
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('BANKOMAT') and o.name = 'FK_BANKOMAT_ADRES_BAN_ADRES')
-alter table BANKOMAT
-   drop constraint FK_BANKOMAT_ADRES_BAN_ADRES
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('BANKOMAT') and o.name = 'FK_BANKOMAT_BANK_BANK_BANK')
-alter table BANKOMAT
-   drop constraint FK_BANKOMAT_BANK_BANK_BANK
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('DOLADOWANIE_TELEFONU') and o.name = 'FK_DOLADOWA_KONTO_DOL_KONTO')
-alter table DOLADOWANIE_TELEFONU
-   drop constraint FK_DOLADOWA_KONTO_DOL_KONTO
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('DOLADOWANIE_TELEFONU') and o.name = 'FK_DOLADOWA_OPERATOR__OPERATOR')
-alter table DOLADOWANIE_TELEFONU
-   drop constraint FK_DOLADOWA_OPERATOR__OPERATOR
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('KARTA') and o.name = 'FK_KARTA_KONTO_KAR_KONTO')
-alter table KARTA
-   drop constraint FK_KARTA_KONTO_KAR_KONTO
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('PLATNOSC_KARTA') and o.name = 'FK_PLATNOSC_KARTA_PLA_KARTA')
-alter table PLATNOSC_KARTA
-   drop constraint FK_PLATNOSC_KARTA_PLA_KARTA
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('PLATNOSC_KARTA') and o.name = 'FK_PLATNOSC_TERMINAL__TERMINAL')
-alter table PLATNOSC_KARTA
-   drop constraint FK_PLATNOSC_TERMINAL__TERMINAL
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('TRANSAKCJA') and o.name = 'FK_TRANSAKC_KONTO_DO_KONTO')
-alter table TRANSAKCJA
-   drop constraint FK_TRANSAKC_KONTO_DO_KONTO
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('TRANSAKCJA') and o.name = 'FK_TRANSAKC_KONTO_Z_KONTO')
-alter table TRANSAKCJA
-   drop constraint FK_TRANSAKC_KONTO_Z_KONTO
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('TRANSAKCJA') and o.name = 'FK_TRANSAKC_TYP_TRANS_TYP_TRAN')
-alter table TRANSAKCJA
-   drop constraint FK_TRANSAKC_TYP_TRANS_TYP_TRAN
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('WPLATA_RATY_POZYCZKI') and o.name = 'FK_WPLATA_R_KONTO_WPL_KONTO')
-alter table WPLATA_RATY_POZYCZKI
-   drop constraint FK_WPLATA_R_KONTO_WPL_KONTO
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('WPLATA_RATY_POZYCZKI') and o.name = 'FK_WPLATA_R_POZYCZKA__POZYCZKA')
-alter table WPLATA_RATY_POZYCZKI
-   drop constraint FK_WPLATA_R_POZYCZKA__POZYCZKA
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('WYPLATA_Z_BANKOMATU') and o.name = 'FK_WYPLATA__BANKOMAT__BANKOMAT')
-alter table WYPLATA_Z_BANKOMATU
-   drop constraint FK_WYPLATA__BANKOMAT__BANKOMAT
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('WYPLATA_Z_BANKOMATU') and o.name = 'FK_WYPLATA__KARTA_WYP_KARTA')
-alter table WYPLATA_Z_BANKOMATU
-   drop constraint FK_WYPLATA__KARTA_WYP_KARTA
-go
 
 if exists (select 1
             from  sysobjects
@@ -308,8 +210,7 @@ create table ADRES (
    KOD_POCZTOWY         varchar(50)          null,
    MIESZKANIE           varchar(50)          null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_ADRES primary key nonclustered (ID_ADRES)
+   SOURCE               numeric              null
 )
 go
 
@@ -320,8 +221,7 @@ create table BANK (
    ID_BANK              numeric              not null,
    NAZWA_BANKU          varchar(50)          null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_BANK primary key nonclustered (ID_BANK)
+   SOURCE               numeric              null
 )
 go
 
@@ -334,38 +234,7 @@ create table BANKOMAT (
    ID_ADRES             numeric              not null,
    NAZWA_BANKOMATU      varchar(50)          null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_BANKOMAT primary key nonclustered (ID_BANKOMAT),
-   constraint FK_BANKOMAT_BANK_BANK_BANK foreign key (ID_BANK)
-      references BANK (ID_BANK),
-   constraint FK_BANKOMAT_ADRES_BAN_ADRES foreign key (ID_ADRES)
-      references ADRES (ID_ADRES)
-)
-go
-
-/*==============================================================*/
-/* Table: KONTO                                                 */
-/*==============================================================*/
-create table KONTO (
-   ID_KONTA             numeric              not null,
-   NUMER_KONTA          numeric              not null,
-   OPROCENTOWANIE_KONTA float                not null,
-   TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_KONTO primary key nonclustered (ID_KONTA)
-)
-go
-
-/*==============================================================*/
-/* Table: OPERATOR                                              */
-/*==============================================================*/
-create table OPERATOR (
-   ID_OPERATOR          numeric              not null,
-   NAZWA_OPERATORA      varchar(50)          null,
-   OPROCENTOWANIE_OPERATORA float                null,
-   TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_OPERATOR primary key nonclustered (ID_OPERATOR)
+   SOURCE               numeric              null
 )
 go
 
@@ -379,12 +248,7 @@ create table DOLADOWANIE_TELEFONU (
    NUMER_TELEFONU       varchar(11)          not null,
    KWOTA_DOLADOWANIA    money                not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_DOLADOWANIE_TELEFONU primary key nonclustered (ID_DOLADOWANIA),
-   constraint FK_DOLADOWA_KONTO_DOL_KONTO foreign key (ID_KONTA)
-      references KONTO (ID_KONTA),
-   constraint FK_DOLADOWA_OPERATOR__OPERATOR foreign key (ID_OPERATOR)
-      references OPERATOR (ID_OPERATOR)
+   SOURCE               numeric              null
 )
 go
 
@@ -398,23 +262,31 @@ create table KARTA (
    CVC                  numeric              not null,
    DATA_WAZNOSCI_KARTY  datetime             not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_KARTA primary key nonclustered (ID_KARTY),
-   constraint FK_KARTA_KONTO_KAR_KONTO foreign key (ID_KONTA)
-      references KONTO (ID_KONTA)
+   SOURCE               numeric              null
 )
 go
 
 /*==============================================================*/
-/* Table: TERMINAL                                              */
+/* Table: KONTO                                                 */
 /*==============================================================*/
-create table TERMINAL (
-   ID_TERMINALU         numeric              not null,
-   WLASCICIEL           varchar(150)         not null,
-   DATA_WAZNOSCI        datetime             not null,
+create table KONTO (
+   ID_KONTA             numeric              not null,
+   NUMER_KONTA          numeric              not null,
+   OPROCENTOWANIE_KONTA float                not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_TERMINAL primary key nonclustered (ID_TERMINALU)
+   SOURCE               numeric              null
+)
+go
+
+/*==============================================================*/
+/* Table: OPERATOR                                              */
+/*==============================================================*/
+create table OPERATOR (
+   ID_OPERATOR          numeric              not null,
+   NAZWA_OPERATORA      varchar(50)          null,
+   OPROCENTOWANIE_OPERATORA float                null,
+   TIMESTAMP            datetime             null,
+   SOURCE               numeric              null
 )
 go
 
@@ -428,12 +300,7 @@ create table PLATNOSC_KARTA (
    WARTOSC              float                not null,
    DATA_PLATNOSCI       datetime             not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_PLATNOSC_KARTA primary key nonclustered (ID_PLATNOSCI),
-   constraint FK_PLATNOSC_KARTA_PLA_KARTA foreign key (ID_KARTY)
-      references KARTA (ID_KARTY),
-   constraint FK_PLATNOSC_TERMINAL__TERMINAL foreign key (ID_TERMINALU)
-      references TERMINAL (ID_TERMINALU)
+   SOURCE               numeric              null
 )
 go
 
@@ -446,20 +313,19 @@ create table POZYCZKA (
    OPROCENTOWANIE       float(4)             not null,
    DATA_POZYCZKI        datetime             not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_POZYCZKA primary key nonclustered (ID_POZYCZKA)
+   SOURCE               numeric              null
 )
 go
 
 /*==============================================================*/
-/* Table: TYP_TRANSAKCJI                                        */
+/* Table: TERMINAL                                              */
 /*==============================================================*/
-create table TYP_TRANSAKCJI (
-   ID_TYPU              numeric              not null,
-   OPIS                 varchar(100)         null,
+create table TERMINAL (
+   ID_TERMINALU         numeric              not null,
+   WLASCICIEL           varchar(150)         not null,
+   DATA_WAZNOSCI        datetime             not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_TYP_TRANSAKCJI primary key nonclustered (ID_TYPU)
+   SOURCE               numeric              null
 )
 go
 
@@ -473,14 +339,18 @@ create table TRANSAKCJA (
    ID_TYPU              numeric              null,
    KWOTA                float                not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_TRANSAKCJA primary key nonclustered (ID_TRANSAKCJI),
-   constraint FK_TRANSAKC_KONTO_Z_KONTO foreign key (ID_KONTA)
-      references KONTO (ID_KONTA),
-   constraint FK_TRANSAKC_KONTO_DO_KONTO foreign key (KON_ID_KONTA)
-      references KONTO (ID_KONTA),
-   constraint FK_TRANSAKC_TYP_TRANS_TYP_TRAN foreign key (ID_TYPU)
-      references TYP_TRANSAKCJI (ID_TYPU)
+   SOURCE               numeric              null
+)
+go
+
+/*==============================================================*/
+/* Table: TYP_TRANSAKCJI                                        */
+/*==============================================================*/
+create table TYP_TRANSAKCJI (
+   ID_TYPU              numeric              not null,
+   OPIS                 varchar(100)         null,
+   TIMESTAMP            datetime             null,
+   SOURCE               numeric              null
 )
 go
 
@@ -620,12 +490,7 @@ create table WPLATA_RATY_POZYCZKI (
    KWOATA               money                not null,
    DATA_WPLATY_RATY     datetime             not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_WPLATA_RATY_POZYCZKI primary key nonclustered (ID_RATY),
-   constraint FK_WPLATA_R_POZYCZKA__POZYCZKA foreign key (ID_POZYCZKA)
-      references POZYCZKA (ID_POZYCZKA),
-   constraint FK_WPLATA_R_KONTO_WPL_KONTO foreign key (ID_KONTA)
-      references KONTO (ID_KONTA)
+   SOURCE               numeric              null
 )
 go
 
@@ -638,12 +503,7 @@ create table WYPLATA_Z_BANKOMATU (
    ID_KARTY             numeric              null,
    DATA_WYPLATY         datetime             null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_WYPLATA_Z_BANKOMATU primary key nonclustered (ID_WYPLATY),
-   constraint FK_WYPLATA__BANKOMAT__BANKOMAT foreign key (ID_BANKOMAT)
-      references BANKOMAT (ID_BANKOMAT),
-   constraint FK_WYPLATA__KARTA_WYP_KARTA foreign key (ID_KARTY)
-      references KARTA (ID_KARTY)
+   SOURCE               numeric              null
 )
 go
 
