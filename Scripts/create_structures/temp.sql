@@ -476,7 +476,7 @@ go
 /*==============================================================*/
 /* Table: DOLADOWANIE_TELEFONU                                  */
 /*==============================================================*/
-create table BAD_OLADOWANIE_TELEFONU (
+create table BAD_DOLADOWANIE_TELEFONU (
    ID_DOLADOWANIA       numeric              not null,
    ID_KONTA             numeric              null,
    ID_OPERATOR          numeric              null,
@@ -775,7 +775,7 @@ go
 /*==============================================================*/
 /* Table: DOLADOWANIE_TELEFONU                                  */
 /*==============================================================*/
-create table STG_OLADOWANIE_TELEFONU (
+create table STG_DOLADOWANIE_TELEFONU (
    ID_DOLADOWANIA       numeric              not null,
    ID_KONTA             numeric              null,
    ID_OPERATOR          numeric              null,
