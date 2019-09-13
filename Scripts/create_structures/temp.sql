@@ -173,7 +173,7 @@ go
 /*==============================================================*/
 /* Table: DOLADOWANIE_TELEFONU                                  */
 /*==============================================================*/
-create table TEMP_OLADOWANIE_TELEFONU (
+create table TEMP_DOLADOWANIE_TELEFONU (
    ID_DOLADOWANIA       numeric              not null,
    ID_KONTA             numeric              null,
    ID_OPERATOR          numeric              null,
