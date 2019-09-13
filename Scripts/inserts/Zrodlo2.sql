@@ -62,3 +62,12 @@ insert into Zrodlo2.dbo.KARTA values
 (3, 2, 1115551134111, 789, '3019-02-12 00:00:00'), 
 (4, 2, 111111123111, 143, '3019-02-07 00:00:00'), 
 (5, 3, 1111116311, 153, '3019-02-06 00:00:00');
+
+
+-- Bankomat
+insert into Zrodlo2.dbo.BANKOMAT values
+(1, 2, 5, 'Bankomat 1'),
+(2, 3, 5, 'Bankomat 2'),
+(3, 4, 5, 'Bankomat kolejny'),
+(4, 5, 5, 'Nazwa bankomatu'),
+(5, 5, 5, 'U Krysi');
