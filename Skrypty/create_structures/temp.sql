@@ -3,7 +3,7 @@
 /* Created on:     10.09.2019 08:15:13                          */
 /*==============================================================*/
 
-
+Use [Temp]
 
 if exists (select 1
             from  sysobjects
@@ -14,7 +14,7 @@ go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('TEMP_BANK')
+           where  id = object_id('TEMP_BANK') 
             and   type = 'U')
    drop table TEMP_BANK
 go
