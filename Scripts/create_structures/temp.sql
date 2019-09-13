@@ -113,8 +113,8 @@ create table TEMP_ADRES (
    KOD_POCZTOWY         varchar(50)          null,
    MIESZKANIE           varchar(50)          null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_TEMP_ADRES primary key nonclustered (ID_ADRES)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -125,8 +125,8 @@ create table TEMP_BANK (
    ID_BANK              numeric              not null,
    NAZWA_BANKU          varchar(50)          null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_TEMP_BANK primary key nonclustered (ID_BANK)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -139,8 +139,8 @@ create table TEMP_BANKOMAT (
    ID_ADRES             numeric              not null,
    NAZWA_BANKOMATU      varchar(50)          null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_TEMP_BANKOMAT primary key nonclustered (ID_BANKOMAT)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -152,8 +152,8 @@ create table TEMP_KONTO (
    NUMER_KONTA          numeric              not null,
    OPROCENTOWANIE_KONTA float                not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_TEMP_KONTO primary key nonclustered (ID_KONTA)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -165,8 +165,8 @@ create table TEMP_OPERATOR (
    NAZWA_OPERATORA      varchar(50)          null,
    OPROCENTOWANIE_OPERATORA float                null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_TEMP_OPERATOR primary key nonclustered (ID_OPERATOR)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -180,8 +180,8 @@ create table TEMP_DOLADOWANIE_TELEFONU (
    NUMER_TELEFONU       varchar(11)          not null,
    KWOTA_DOLADOWANIA    money                not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_DOLADOWANIE_TELEFONU primary key nonclustered (ID_DOLADOWANIA)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -195,8 +195,8 @@ create table TEMP_KARTA (
    CVC                  numeric              not null,
    DATA_WAZNOSCI_KARTY  datetime             not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_TEMP_KARTA primary key nonclustered (ID_KARTY)
+   SOURCE               numeric              null
+   
 
 )
 go
@@ -209,8 +209,8 @@ create table TEMP_TERMINAL (
    WLASCICIEL           varchar(150)         not null,
    DATA_WAZNOSCI        datetime             not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_TEMP_TERMINAL primary key nonclustered (ID_TERMINALU)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -224,8 +224,8 @@ create table TEMP_PLATNOSC_KARTA (
    WARTOSC              float                not null,
    DATA_PLATNOSCI       datetime             not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_TEMP_PLATNOSC_KARTA primary key nonclustered (ID_PLATNOSCI)
+   SOURCE               numeric              null
+   
   
 )
 go
@@ -239,8 +239,8 @@ create table TEMP_POZYCZKA (
    OPROCENTOWANIE       float(4)             not null,
    DATA_POZYCZKI        datetime             not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_TEMP_POZYCZKA primary key nonclustered (ID_POZYCZKA)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -251,8 +251,8 @@ create table TEMP_TYP_TRANSAKCJI (
    ID_TYPU              numeric              not null,
    OPIS                 varchar(100)         null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_TEMP_TYP_TRANSAKCJI primary key nonclustered (ID_TYPU)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -266,8 +266,8 @@ create table TEMP_TRANSAKCJA (
    ID_TYPU              numeric              null,
    KWOTA                float                not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_TEMP_TRANSAKCJA primary key nonclustered (ID_TRANSAKCJI)
+   SOURCE               numeric              null
+   
   
 )
 go
@@ -281,8 +281,8 @@ create table TEMP_WPLATA_RATY_POZYCZKI (
    KWOATA               money                not null,
    DATA_WPLATY_RATY     datetime             not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_TEMP_WPLATA_RATY_POZYCZKI primary key nonclustered (ID_RATY)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -295,8 +295,8 @@ create table TEMP_WYPLATA_Z_BANKOMATU (
    ID_KARTY             numeric              null,
    DATA_WYPLATY         datetime             null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_TEMP_WYPLATA_Z_BANKOMATU primary key nonclustered (ID_WYPLATY)
+   SOURCE               numeric              null
+   
 
 )
 go
@@ -416,8 +416,8 @@ create table BAD_ADRES (
    KOD_POCZTOWY         varchar(50)          null,
    MIESZKANIE           varchar(50)          null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_BAD_ADRES primary key nonclustered (ID_ADRES)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -428,8 +428,8 @@ create table BAD_BANK (
    ID_BANK              numeric              not null,
    NAZWA_BANKU          varchar(50)          null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_BAD_BANK primary key nonclustered (ID_BANK)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -442,8 +442,8 @@ create table BAD_BANKOMAT (
    ID_ADRES             numeric              not null,
    NAZWA_BANKOMATU      varchar(50)          null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_BAD_BANKOMAT primary key nonclustered (ID_BANKOMAT)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -455,8 +455,8 @@ create table BAD_KONTO (
    NUMER_KONTA          numeric              not null,
    OPROCENTOWANIE_KONTA float                not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_BAD_KONTO primary key nonclustered (ID_KONTA)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -468,8 +468,8 @@ create table BAD_OPERATOR (
    NAZWA_OPERATORA      varchar(50)          null,
    OPROCENTOWANIE_OPERATORA float                null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_BAD_OPERATOR primary key nonclustered (ID_OPERATOR)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -483,8 +483,8 @@ create table BAD_OLADOWANIE_TELEFONU (
    NUMER_TELEFONU       varchar(11)          not null,
    KWOTA_DOLADOWANIA    money                not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_BAD_DOLADOWANIE_TELEFONU primary key nonclustered (ID_DOLADOWANIA)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -498,8 +498,8 @@ create table BAD_KARTA (
    CVC                  numeric              not null,
    DATA_WAZNOSCI_KARTY  datetime             not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_BAD_KARTA primary key nonclustered (ID_KARTY)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -511,8 +511,8 @@ create table BAD_TERMINAL (
    WLASCICIEL           varchar(150)         not null,
    DATA_WAZNOSCI        datetime             not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_BAD_TERMINAL primary key nonclustered (ID_TERMINALU)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -526,8 +526,8 @@ create table BAD_PLATNOSC_KARTA (
    WARTOSC              float                not null,
    DATA_PLATNOSCI       datetime             not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_BAD_PLATNOSC_KARTA primary key nonclustered (ID_PLATNOSCI)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -540,8 +540,8 @@ create table BAD_POZYCZKA (
    OPROCENTOWANIE       float(4)             not null,
    DATA_POZYCZKI        datetime             not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_BAD_POZYCZKA primary key nonclustered (ID_POZYCZKA)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -552,8 +552,8 @@ create table BAD_TYP_TRANSAKCJI (
    ID_TYPU              numeric              not null,
    OPIS                 varchar(100)         null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_BAD_TYP_TRANSAKCJI primary key nonclustered (ID_TYPU)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -567,8 +567,8 @@ create table BAD_TRANSAKCJA (
    ID_TYPU              numeric              null,
    KWOTA                float                not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_TRANSAKCJA primary key nonclustered (ID_TRANSAKCJI)
+   SOURCE               numeric              null
+   
 )
 go
 /*==============================================================*/
@@ -581,8 +581,8 @@ create table BAD_WPLATA_RATY_POZYCZKI (
    KWOATA               money                not null,
    DATA_WPLATY_RATY     datetime             not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_BAD_WPLATA_RATY_POZYCZKI primary key nonclustered (ID_RATY)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -595,8 +595,8 @@ create table BAD_WYPLATA_Z_BANKOMATU (
    ID_KARTY             numeric              null,
    DATA_WYPLATY         datetime             null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_BAD_WYPLATA_Z_BANKOMATU primary key nonclustered (ID_WYPLATY)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -715,8 +715,8 @@ create table STG_ADRES (
    KOD_POCZTOWY         varchar(50)          null,
    MIESZKANIE           varchar(50)          null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_STG_ADRES primary key nonclustered (ID_ADRES)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -727,8 +727,8 @@ create table STG_BANK (
    ID_BANK              numeric              not null,
    NAZWA_BANKU          varchar(50)          null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_STG_BANK primary key nonclustered (ID_BANK)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -741,8 +741,8 @@ create table STG_BANKOMAT (
    ID_ADRES             numeric              not null,
    NAZWA_BANKOMATU      varchar(50)          null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_BANKOMAT primary key nonclustered (ID_BANKOMAT)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -754,8 +754,8 @@ create table STG_KONTO (
    NUMER_KONTA          numeric              not null,
    OPROCENTOWANIE_KONTA float                not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_STG_KONTO primary key nonclustered (ID_KONTA)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -767,8 +767,8 @@ create table STG_OPERATOR (
    NAZWA_OPERATORA      varchar(50)          null,
    OPROCENTOWANIE_OPERATORA float                null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_STG_OPERATOR primary key nonclustered (ID_OPERATOR)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -782,8 +782,8 @@ create table STG_OLADOWANIE_TELEFONU (
    NUMER_TELEFONU       varchar(11)          not null,
    KWOTA_DOLADOWANIA    money                not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_STG_DOLADOWANIE_TELEFONU primary key nonclustered (ID_DOLADOWANIA)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -797,8 +797,8 @@ create table STG_KARTA (
    CVC                  numeric              not null,
    DATA_WAZNOSCI_KARTY  datetime             not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_STG_KARTA primary key nonclustered (ID_KARTY)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -810,8 +810,8 @@ create table STG_TERMINAL (
    WLASCICIEL           varchar(150)         not null,
    DATA_WAZNOSCI        datetime             not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_STG_TERMINAL primary key nonclustered (ID_TERMINALU)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -825,8 +825,8 @@ create table STG_PLATNOSC_KARTA (
    WARTOSC              float                not null,
    DATA_PLATNOSCI       datetime             not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_STG_PLATNOSC_KARTA primary key nonclustered (ID_PLATNOSCI)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -839,8 +839,8 @@ create table STG_POZYCZKA (
    OPROCENTOWANIE       float(4)             not null,
    DATA_POZYCZKI        datetime             not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_STG_POZYCZKA primary key nonclustered (ID_POZYCZKA)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -851,8 +851,8 @@ create table STG_TYP_TRANSAKCJI (
    ID_TYPU              numeric              not null,
    OPIS                 varchar(100)         null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_STG_TYP_TRANSAKCJI primary key nonclustered (ID_TYPU)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -866,8 +866,8 @@ create table STG_TRANSAKCJA (
    ID_TYPU              numeric              null,
    KWOTA                float                not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_STG_TRANSAKCJA primary key nonclustered (ID_TRANSAKCJI)
+   SOURCE               numeric              null
+   
 )
 go
 /*==============================================================*/
@@ -880,8 +880,8 @@ create table STG_WPLATA_RATY_POZYCZKI (
    KWOATA               money                not null,
    DATA_WPLATY_RATY     datetime             not null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_STG_WPLATA_RATY_POZYCZKI primary key nonclustered (ID_RATY)
+   SOURCE               numeric              null
+   
 )
 go
 
@@ -894,8 +894,8 @@ create table STG_WYPLATA_Z_BANKOMATU (
    ID_KARTY             numeric              null,
    DATA_WYPLATY         datetime             null,
    TIMESTAMP            datetime             null,
-   SOURCE               numeric              null,
-   constraint PK_STG_WYPLATA_Z_BANKOMATU primary key nonclustered (ID_WYPLATY)
+   SOURCE               numeric              null
+   
 )
 go
 
