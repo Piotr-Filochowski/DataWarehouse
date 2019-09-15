@@ -1,69 +1,145 @@
-alter procedure Wstaw_target_wymiary as
+USE [Temp]
+GO
 
- print 'Adres'
--- Adres
+/****** Object:  StoredProcedure [dbo].[Wstaw_target_wymiary]    Script Date: 15.09.2019 14:33:52 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+ALTER procedure [dbo].[Wstaw_target_wymiary] as
+
 update Target.dbo.ADRES
 set TIMESTAMP = getDate()
-where ID_ADRES in (select t.T_VALUE from Target.dbo.T_KEY_ADRES t join Temp.dbo.STG_ADRES a on (a.ID_ADRES = t.T_VALUE));
+where ID_CHD in
+(
+	select tar.ID_CHD
+	from Target.dbo.ADRES tar
+	join Temp.dbo.STG_ADRES tem on (tem.ID_ADRES = tar.ID_FROM_SOURCE and tem.SOURCE = tar.SOURCE)
+)
 
 update Target.dbo.BANK
 set TIMESTAMP = getDate()
-where ID_BANK in (select t.T_VALUE from Target.dbo.T_KEY_BANK t join Temp.dbo.STG_BANK a on (a.ID_BANK = t.T_VALUE));
+where ID_CHD in
+(
+	select tar.ID_CHD
+	from Target.dbo.BANK tar
+	join Temp.dbo.STG_BANK tem on (tem.ID_BANK = tar.ID_FROM_SOURCE and tem.SOURCE = tar.SOURCE)
+)
 
 update Target.dbo.BANKOMAT
 set TIMESTAMP = getDate()
-where ID_BANKOMAT in (select t.T_VALUE from Target.dbo.T_KEY_BANKOMAT t join Temp.dbo.STG_BANKOMAT a on (a.ID_BANKOMAT = t.T_VALUE));
+where ID_CHD in
+(
+	select tar.ID_CHD
+	from Target.dbo.BANKOMAT tar
+	join Temp.dbo.STG_BANKOMAT tem on (tem.ID_BANKOMAT = tar.ID_FROM_SOURCE and tem.SOURCE = tar.SOURCE)
+)
 
 update Target.dbo.KARTA
 set TIMESTAMP = getDate()
-where ID_KARTY in (select t.T_VALUE from Target.dbo.T_KEY_KARTA t join Temp.dbo.STG_KARTA a on (a.ID_KARTY = t.T_VALUE));
+where ID_CHD in
+(
+	select tar.ID_CHD
+	from Target.dbo.KARTA tar
+	join Temp.dbo.STG_KARTA tem on (tem.ID_KARTY = tar.ID_FROM_SOURCE and tem.SOURCE = tar.SOURCE)
+)
 
 update Target.dbo.KONTO
 set TIMESTAMP = getDate()
-where ID_KONTA in (select t.T_VALUE from Target.dbo.T_KEY_KONTO t join Temp.dbo.STG_KONTO a on (a.ID_KONTA = t.T_VALUE));
+where ID_CHD in
+(
+	select tar.ID_CHD
+	from Target.dbo.KONTO tar
+	join Temp.dbo.STG_KONTO tem on (tem.ID_KONTA = tar.ID_FROM_SOURCE and tem.SOURCE = tar.SOURCE)
+)
 
 update Target.dbo.OPERATOR
 set TIMESTAMP = getDate()
-where ID_OPERATOR in (select t.T_VALUE from Target.dbo.T_KEY_OPERATOR t join Temp.dbo.STG_OPERATOR a on (a.ID_OPERATOR = t.T_VALUE));
+where ID_CHD in
+(
+	select tar.ID_CHD
+	from Target.dbo.OPERATOR tar
+	join Temp.dbo.STG_OPERATOR tem on (tem.ID_OPERATOR = tar.ID_FROM_SOURCE and tem.SOURCE = tar.SOURCE)
+)
 
 update Target.dbo.POZYCZKA
 set TIMESTAMP = getDate()
-where ID_POZYCZKA in (select t.T_VALUE from Target.dbo.T_KEY_POZYCZKA t join Temp.dbo.STG_POZYCZKA a on (a.ID_POZYCZKA = t.T_VALUE));
+where ID_CHD in
+(
+	select tar.ID_CHD
+	from Target.dbo.POZYCZKA tar
+	join Temp.dbo.STG_POZYCZKA tem on (tem.ID_POZYCZKA = tar.ID_FROM_SOURCE and tem.SOURCE = tar.SOURCE)
+)
 
 update Target.dbo.TERMINAL
 set TIMESTAMP = getDate()
-where ID_TERMINALU in (select t.T_VALUE from Target.dbo.T_KEY_TERMINAL t join Temp.dbo.STG_TERMINAL a on (a.ID_TERMINALU = t.T_VALUE));
+where ID_CHD in
+(
+	select tar.ID_CHD
+	from Target.dbo.TERMINAL tar
+	join Temp.dbo.STG_TERMINAL tem on (tem.ID_TERMINALU = tar.ID_FROM_SOURCE and tem.SOURCE = tar.SOURCE)
+)
 
 update Target.dbo.TYP_TRANSAKCJI
 set TIMESTAMP = getDate()
-where ID_TYPU in (select t.T_VALUE from Target.dbo.T_KEY_TYP_TRANSAKCJI t join Temp.dbo.STG_TYP_TRANSAKCJI a on (a.ID_TYPU = t.T_VALUE));
+where ID_CHD in
+(
+	select tar.ID_CHD
+	from Target.dbo.TYP_TRANSAKCJI tar
+	join Temp.dbo.STG_TYP_TRANSAKCJI tem on (tem.ID_TYPU = tar.ID_FROM_SOURCE and tem.SOURCE = tar.SOURCE)
+)
+
+insert into Target.dbo.ADRES
+(ID_FROM_SOURCE, ULICA, MIASTO, KOD_POCZTOWY, MIESZKANIE, TIMESTAMP, SOURCE)
+select ta.ID_ADRES, ta.ULICA, ta.MIASTO, ta.KOD_POCZTOWY, ta.MIESZKANIE, ta.TIMESTAMP, ta.SOURCE
+from Temp.dbo.STG_ADRES ta
+
+insert into Target.dbo.BANK
+(ID_FROM_SOURCE, NAZWA_BANKU, TIMESTAMP, SOURCE)
+select ta.ID_BANK, ta.NAZWA_BANKU, ta.TIMESTAMP, ta.SOURCE
+from Temp.dbo.STG_BANK ta
+
+insert into Target.dbo.BANKOMAT
+(ID_FROM_SOURCE, ta.ID_BANK, ta.ID_ADRES, ta.NAZWA_BANKOMATU, ta.TIMESTAMP, ta.SOURCE)
+select ta.ID_BANKOMAT, ta.ID_BANK, ta.ID_ADRES, ta.NAZWA_BANKOMATU, ta.TIMESTAMP, ta.SOURCE
+from Temp.dbo.STG_BANKOMAT ta
+
+insert into Target.dbo.KARTA
+(ID_FROM_SOURCE, ta.ID_KONTA, ta.NUMER_KARTY, ta.CVC, ta.DATA_WAZNOSCI_KARTY, ta.TIMESTAMP, ta.SOURCE)
+select ta.ID_KARTY, ta.ID_KONTA, ta.NUMER_KARTY, ta.CVC, ta.DATA_WAZNOSCI_KARTY, ta.TIMESTAMP, ta.SOURCE
+from Temp.dbo.STG_KARTA ta
+
+insert into Target.dbo.KONTO
+(ID_FROM_SOURCE, ta.NUMER_KONTA, ta.OPROCENTOWANIE_KONTA, ta.TIMESTAMP, ta.SOURCE)
+select  ta.ID_KONTA, ta.NUMER_KONTA, ta.OPROCENTOWANIE_KONTA, ta.TIMESTAMP, ta.SOURCE
+from Temp.dbo.STG_KONTO ta
+
+insert into Target.dbo.OPERATOR
+(ID_FROM_SOURCE, ta.NAZWA_OPERATORA, ta.OPROCENTOWANIE_OPERATORA, ta.TIMESTAMP, ta.SOURCE)
+select ta.ID_OPERATOR, ta.NAZWA_OPERATORA, ta.OPROCENTOWANIE_OPERATORA, ta.TIMESTAMP, ta.SOURCE
+from Temp.dbo.STG_OPERATOR ta
+
+insert into Target.dbo.POZYCZKA
+(ID_FROM_SOURCE, ta.SUMA, ta.OPROCENTOWANIE, ta.DATA_POZYCZKI, ta.TIMESTAMP, ta.SOURCE)
+select ta.ID_POZYCZKA, ta.SUMA, ta.OPROCENTOWANIE, ta.DATA_POZYCZKI, ta.TIMESTAMP, ta.SOURCE
+from Temp.dbo.STG_POZYCZKA ta
+
+insert into Target.dbo.TERMINAL
+(ID_FROM_SOURCE, WLASCICIEL, DATA_WAZNOSCI, TIMESTAMP, SOURCE)
+select ta.ID_TERMINALU, WLASCICIEL, DATA_WAZNOSCI, TIMESTAMP, SOURCE
+from Temp.dbo.STG_TERMINAL ta
+
+insert into Target.dbo.TYP_TRANSAKCJI
+(ID_FROM_SOURCE, OPIS, TIMESTAMP, SOURCE)
+select ID_TYPU, OPIS, TIMESTAMP, SOURCE
+from Temp.dbo.STG_TYP_TRANSAKCJI ta
 
 
-insert into Target.dbo.T_KEY_ADRES select ROW_NUMBER()OVER(ORDER BY a.ID_ADRES) + max(a.ID_ADRES), ID_ADRES from  Temp.dbo.STG_ADRES a where a.ID_ADRES not in (select t_value from target.dbo.T_KEY_ADRES) group by a.ID_ADRES
-insert into Target.dbo.T_KEY_BANK select ROW_NUMBER()OVER(ORDER BY a.ID_BANK) + max(a.ID_BANK), ID_BANK from  Temp.dbo.STG_BANK a where a.ID_BANK not in (select t_value from target.dbo.T_KEY_BANK) group by a.ID_BANK
-insert into Target.dbo.T_KEY_BANKOMAT select ROW_NUMBER()OVER(ORDER BY a.ID_BANKOMAT) + max(a.ID_BANKOMAT), ID_BANKOMAT from  Temp.dbo.STG_BANKOMAT a where a.ID_BANKOMAT not in (select t_value from target.dbo.T_KEY_BANKOMAT) group by a.ID_BANKOMAT
-insert into Target.dbo.T_KEY_KARTA select ROW_NUMBER()OVER(ORDER BY a.ID_KARTY) + max(a.ID_KARTY), ID_KARTY from  Temp.dbo.STG_KARTA a where a.ID_KARTY not in (select t_value from target.dbo.T_KEY_KARTA) group by a.ID_KARTY
-insert into Target.dbo.T_KEY_KONTO select ROW_NUMBER()OVER(ORDER BY a.ID_KONTA) + max(a.ID_KONTA), ID_KONTA from  Temp.dbo.STG_KONTO a where a.ID_KONTA not in (select t_value from target.dbo.T_KEY_KONTO) group by a.ID_KONTA
-insert into Target.dbo.T_KEY_OPERATOR select ROW_NUMBER()OVER(ORDER BY a.ID_OPERATOR) + max(a.ID_OPERATOR), ID_OPERATOR from  Temp.dbo.STG_OPERATOR a where a.ID_OPERATOR not in (select t_value from target.dbo.T_KEY_OPERATOR) group by a.ID_OPERATOR
-insert into Target.dbo.T_KEY_POZYCZKA select ROW_NUMBER()OVER(ORDER BY a.ID_POZYCZKA) + max(a.ID_POZYCZKA), ID_POZYCZKA from  Temp.dbo.STG_POZYCZKA a where a.ID_POZYCZKA not in (select t_value from target.dbo.T_KEY_POZYCZKA) group by a.ID_POZYCZKA
-insert into Target.dbo.T_KEY_TERMINAL select ROW_NUMBER()OVER(ORDER BY a.ID_TERMINALU) + max(a.ID_TERMINALU), ID_TERMINALU from  Temp.dbo.STG_TERMINAL a where a.ID_TERMINALU not in (select t_value from target.dbo.T_KEY_TERMINAL) group by a.ID_TERMINALU
-insert into Target.dbo.T_KEY_TYP_TRANSAKCJI select ROW_NUMBER()OVER(ORDER BY a.ID_TYPU) + max(a.ID_TYPU), ID_TYPU from  Temp.dbo.STG_TYP_TRANSAKCJI a where a.ID_TYPU not in (select t_value from target.dbo.T_KEY_TYP_TRANSAKCJI) group by a.ID_TYPU
-
-insert into Target.dbo.ADRES select ta.ID_ADRES, ta.ULICA, ta.MIASTO, ta.KOD_POCZTOWY, ta.MIESZKANIE, ta.TIMESTAMP, ta.SOURCE from Temp.dbo.STG_ADRES ta join Target.dbo.T_KEY_ADRES t on (t.T_VALUE = ta.ID_ADRES)
-insert into Target.dbo.ADRES select ID_ADRES, ULICA, MIASTO, KOD_POCZTOWY, MIESZKANIE, TIMESTAMP, SOURCE from Temp.dbo.STG_ADRES ta join Target.dbo.T_KEY_ADRES t on (t.T_VALUE = ta.ID_ADRES);
-
-insert into Target.dbo.KARTA select t.T_ID, ID_KONTA, NUMER_KARTY, CVC, DATA_WAZNOSCI_KARTY, TIMESTAMP, SOURCE from Temp.dbo.STG_KARTA ta join Target.dbo.T_KEY_KARTA t on (t.T_VALUE = ta.ID_KARTY);
-insert into Target.dbo.KONTO select t.T_ID, NUMER_KONTA, OPROCENTOWANIE_KONTA, TIMESTAMP, SOURCE from Temp.dbo.STG_KONTO ta join Target.dbo.T_KEY_KONTO t on (t.T_VALUE = ta.ID_KONTA);
-insert into Target.dbo.OPERATOR select  t.T_ID, NAZWA_OPERATORA, OPROCENTOWANIE_OPERATORA, TIMESTAMP, SOURCE from Temp.dbo.STG_OPERATOR ta join Target.dbo.T_KEY_OPERATOR t on (t.T_VALUE = ta.ID_OPERATOR);
-insert into Target.dbo.POZYCZKA select t.T_ID, SUMA, OPROCENTOWANIE, DATA_POZYCZKI, TIMESTAMP, SOURCE from Temp.dbo.STG_POZYCZKA ta join Target.dbo.T_KEY_POZYCZKA t on (t.T_VALUE = ta.ID_POZYCZKA);
-insert into Target.dbo.TERMINAL select t.T_ID, WLASCICIEL, DATA_WAZNOSCI, TIMESTAMP, SOURCE from Temp.dbo.STG_TERMINAL ta join Target.dbo.T_KEY_TERMINAL t on (t.T_VALUE = ta.ID_TERMINALU);
-insert into Target.dbo.ADRES select t.T_ID, ULICA, MIASTO, KOD_POCZTOWY, MIESZKANIE, TIMESTAMP, SOURCE from Temp.dbo.STG_ADRES ta join Target.dbo.T_KEY_ADRES t on (t.T_VALUE = ta.ID_ADRES);
-insert into Target.dbo.BANK select t.T_ID, NAZWA_BANKU, TIMESTAMP, SOURCE from Temp.dbo.STG_BANK ta join Target.dbo.T_KEY_BANK t on (t.T_VALUE = ta.ID_BANK);
-insert into Target.dbo.BANKOMAT select t.T_ID, ID_BANK, ID_ADRES, NAZWA_BANKOMATU, TIMESTAMP, SOURCE from Temp.dbo.STG_BANKOMAT ta join Target.dbo.T_KEY_BANKOMAT t on (t.T_VALUE = ta.ID_BANKOMAT);
-insert into Target.dbo.TYP_TRANSAKCJI select t.T_ID, OPIS, TIMESTAMP, SOURCE from Temp.dbo.STG_TYP_TRANSAKCJI ta join Target.dbo.T_KEY_TYP_TRANSAKCJI t on (t.T_VALUE = ta.ID_TYPU);
 
 
-select * from Temp.dbo.STG_ADRES
+GO
 
-go
 
