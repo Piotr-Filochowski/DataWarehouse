@@ -1,12 +1,14 @@
 USE [Temp]
 GO
 
-/****** Object:  StoredProcedure [dbo].[Wstaw_temp]    Script Date: 15.09.2019 19:00:13 ******/
+/****** Object:  StoredProcedure [dbo].[Wstaw_temp]    Script Date: 16.09.2019 10:05:36 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
+
 
 ALTER procedure [dbo].[Wstaw_temp] as
 
@@ -18,7 +20,7 @@ truncate table [dbo].[STG_BANK];
 truncate table [dbo].[STG_BANKOMAT];
 truncate table [dbo].[STG_KARTA];
 truncate table [dbo].[STG_KONTO];
-truncate table [dbo].[STG_OLADOWANIE_TELEFONU];
+truncate table [dbo].[STG_DOLADOWANIE_TELEFONU];
 truncate table [dbo].[STG_OPERATOR];
 truncate table [dbo].[STG_PLATNOSC_KARTA];
 truncate table [dbo].[STG_POZYCZKA];
@@ -27,21 +29,6 @@ truncate table [dbo].[STG_TRANSAKCJA];
 truncate table [dbo].[STG_TYP_TRANSAKCJI];
 truncate table [dbo].[STG_WPLATA_RATY_POZYCZKI];
 truncate table [dbo].[STG_WYPLATA_Z_BANKOMATU];
-
-truncate table [dbo].[BAD_ADRES];
-truncate table [dbo].[BAD_BANK];
-truncate table [dbo].[BAD_BANKOMAT];
-truncate table [dbo].[BAD_KARTA];
-truncate table [dbo].[BAD_KONTO];
-truncate table [dbo].[BAD_OLADOWANIE_TELEFONU];
-truncate table [dbo].[BAD_OPERATOR];
-truncate table [dbo].[BAD_PLATNOSC_KARTA];
-truncate table [dbo].[BAD_POZYCZKA];
-truncate table [dbo].[BAD_TERMINAL];
-truncate table [dbo].[BAD_TRANSAKCJA];
-truncate table [dbo].[BAD_TYP_TRANSAKCJI];
-truncate table [dbo].[BAD_WPLATA_RATY_POZYCZKI];
-truncate table [dbo].[BAD_WYPLATA_Z_BANKOMATU];
 
 truncate table [dbo].[TEMP_ADRES];
 truncate table [dbo].[TEMP_BANK];

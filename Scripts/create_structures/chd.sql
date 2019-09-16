@@ -106,7 +106,7 @@ go
 /* Table: ADRES                                                 */
 /*==============================================================*/
 create table ADRES (
-   ID_CHD               numeric              not null,
+   ID_CHD  numeric  IDENTITY(1,1)                            not null,
    ULICA                varchar(50)          null,
    MIASTO               varchar(50)          null,
    KOD_POCZTOWY         varchar(50)          null,
@@ -121,7 +121,7 @@ go
 /* Table: BANK                                                  */
 /*==============================================================*/
 create table BANK (
-   ID_CHD               numeric              not null,
+   ID_CHD  numeric  IDENTITY(1,1)                            not null,
    NAZWA_BANKU          varchar(50)          null,
    TIMESTAMP            datetime             null,
    SOURCE               numeric              null,
@@ -133,7 +133,7 @@ go
 /* Table: BANKOMAT                                              */
 /*==============================================================*/
 create table BANKOMAT (
-   ID_CHD               numeric              not null,
+   ID_CHD  numeric  IDENTITY(1,1)                            not null,
    ID_BANK              numeric              not null,
    ID_ADRES             numeric              not null,
    NAZWA_BANKOMATU      varchar(50)          null,
@@ -147,7 +147,7 @@ go
 /* Table: DOLADOWANIE_TELEFONU                                  */
 /*==============================================================*/
 create table DOLADOWANIE_TELEFONU (
-   ID_CHD               numeric              not null,
+   ID_CHD  numeric  IDENTITY(1,1)                            not null,
    ID_KONTA             numeric              null,
    ID_OPERATOR          numeric              null,
    NUMER_TELEFONU       varchar(11)          not null,
@@ -162,7 +162,7 @@ go
 /* Table: KARTA                                                 */
 /*==============================================================*/
 create table KARTA (
-   ID_CHD               numeric              not null,
+   ID_CHD  numeric  IDENTITY(1,1)                            not null,
    ID_KONTA             numeric              null,
    NUMER_KARTY          numeric              not null,
    CVC                  numeric              not null,
@@ -177,7 +177,7 @@ go
 /* Table: KONTO                                                 */
 /*==============================================================*/
 create table KONTO (
-   ID_CHD               numeric              not null,
+   ID_CHD  numeric  IDENTITY(1,1)                            not null,
    NUMER_KONTA          numeric              not null,
    OPROCENTOWANIE_KONTA float                not null,
    TIMESTAMP            datetime             null,
@@ -190,7 +190,7 @@ go
 /* Table: OPERATOR                                              */
 /*==============================================================*/
 create table OPERATOR (
-   ID_CHD               numeric              not null,
+   ID_CHD  numeric  IDENTITY(1,1)                            not null,
    NAZWA_OPERATORA      varchar(50)          null,
    OPROCENTOWANIE_OPERATORA float                null,
    TIMESTAMP            datetime             null,
@@ -203,7 +203,7 @@ go
 /* Table: PLATNOSC_KARTA                                        */
 /*==============================================================*/
 create table PLATNOSC_KARTA (
-   ID_CHD               numeric              not null,
+   ID_CHD  numeric  IDENTITY(1,1)                            not null,
    ID_KARTY             numeric              null,
    ID_TERMINALU         numeric              null,
    WARTOSC              float                not null,
@@ -218,7 +218,7 @@ go
 /* Table: POZYCZKA                                              */
 /*==============================================================*/
 create table POZYCZKA (
-   ID_CHD               numeric              not null,
+   ID_CHD  numeric  IDENTITY(1,1)                            not null,
    SUMA                 numeric              not null,
    OPROCENTOWANIE       float(4)             not null,
    DATA_POZYCZKI        datetime             not null,
@@ -232,7 +232,7 @@ go
 /* Table: TERMINAL                                              */
 /*==============================================================*/
 create table TERMINAL (
-   ID_CHD               numeric              not null,
+   ID_CHD  numeric  IDENTITY(1,1)                            not null,
    WLASCICIEL           varchar(150)         not null,
    DATA_WAZNOSCI        datetime             not null,
    TIMESTAMP            datetime             null,
@@ -245,7 +245,7 @@ go
 /* Table: TRANSAKCJA                                            */
 /*==============================================================*/
 create table TRANSAKCJA (
-   ID_CHD               numeric              not null,
+   ID_CHD  numeric  IDENTITY(1,1)                            not null,
    ID_KONTA             numeric              null,
    KON_ID_KONTA         numeric              null,
    ID_TYPU              numeric              null,
@@ -260,7 +260,7 @@ go
 /* Table: TYP_TRANSAKCJI                                        */
 /*==============================================================*/
 create table TYP_TRANSAKCJI (
-   ID_CHD               numeric              not null,
+   ID_CHD  numeric  IDENTITY(1,1)                            not null,
    OPIS                 varchar(100)         null,
    TIMESTAMP            datetime             null,
    SOURCE               numeric              null,
@@ -272,7 +272,7 @@ go
 /* Table: WPLATA_RATY_POZYCZKI                                  */
 /*==============================================================*/
 create table WPLATA_RATY_POZYCZKI (
-   ID_CHD               numeric              not null,
+   ID_CHD  numeric  IDENTITY(1,1)                            not null,
    ID_POZYCZKA          numeric              null,
    ID_KONTA             numeric              not null,
    KWOATA               money                not null,
@@ -287,7 +287,7 @@ go
 /* Table: WYPLATA_Z_BANKOMATU                                   */
 /*==============================================================*/
 create table WYPLATA_Z_BANKOMATU (
-   ID_CHD               numeric              not null,
+   ID_CHD  numeric  IDENTITY(1,1)                            not null,
    ID_BANKOMAT          numeric              null,
    ID_KARTY             numeric              null,
    DATA_WYPLATY         datetime             null,
